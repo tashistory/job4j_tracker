@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.opp;
 
 public class Dog {
     Dog polkan = new Dog();
