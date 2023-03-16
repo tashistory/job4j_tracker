@@ -1,4 +1,4 @@
-package ru.job4j.tracker.opp;
+package ru.job4j.oop;
 
 public class Student {
     public void music() {
