@@ -13,6 +13,9 @@ public class Item {
         this.name = name;
     }
 
+    public Item() {
+    }
+
     public int getId() {
         return id;
     }
