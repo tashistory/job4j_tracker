@@ -3,7 +3,8 @@ package ru.job4j.pojo;
 public class Library {
 
     public static void print(Book book) {
-        System.out.println("Name:" + book.getName() + "\nQuantity: " + book.getQuantity() + "\n");
+        String ln = System.lineSeparator();
+        System.out.println("Name:" + book.getName() + ln + "Quantity: " + book.getQuantity() + ln);
     }
 
     public static void main(String[] args) {
