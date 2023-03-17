@@ -8,8 +8,9 @@ public class College {
         student.setFullName("Иванов Иван Иванович");
         student.setGroup("IIT-01");
         student.setDateOfApply(new Date());
+        String ln = System.lineSeparator();
         System.out.println("Full Name: " + student.getFullName()
-                + "\nGroup: " + student.getGroup()
-                + "\nDate of Applying: " + student.getDateOfApply());
+                + ln + "Group: " + student.getGroup()
+                + ln +"Date of Applying: " + student.getDateOfApply());
     }
 }
