@@ -11,6 +11,6 @@ public class College {
         String ln = System.lineSeparator();
         System.out.println("Full Name: " + student.getFullName()
                 + ln + "Group: " + student.getGroup()
-                + ln +"Date of Applying: " + student.getDateOfApply());
+                + ln + "Date of Applying: " + student.getDateOfApply());
     }
 }
