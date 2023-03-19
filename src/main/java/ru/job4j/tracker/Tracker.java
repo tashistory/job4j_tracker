@@ -33,7 +33,7 @@ public class Tracker {
        boolean rsl = false;
        int i = indexOf(id);
         if (i != -1) {
-            item.setId(items[i].getId());
+            item.setId(id);
             items[i] = item;
             rsl = true;
         }
