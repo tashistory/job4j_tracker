@@ -14,6 +14,13 @@ public class Item {
         this.id = id;
     }
 
+    public Item(String name) {
+        this.name = name;
+    }
+
+    public Item() {
+    }
+
     @Override
     public String toString() {
         return "Item{"
@@ -21,13 +28,6 @@ public class Item {
                 + ", name='" + name + '\''
                 + ", created=" + created.format(FORMATTER)
                 + '}';
-    }
-
-    public Item(String name) {
-        this.name = name;
-    }
-
-    public Item() {
     }
 
     public int getId() {
