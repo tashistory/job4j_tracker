@@ -30,14 +30,13 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-       boolean rsl = false;
-       int i = indexOf(id);
-        if (i != -1) {
+        int i = indexOf(id);
+        boolean rsl = i != -1;
+        if (rsl) {
             item.setId(id);
             items[i] = item;
-            rsl = true;
         }
-        return  rsl;
+        return rsl;
     }
 
     public Item[] findAll() {
@@ -57,14 +56,13 @@ public class Tracker {
     }
 
     public boolean delete(int id) {
-        boolean rsl = false;
-       int i = indexOf(id);
-        if (i != -1) {
+        int i = indexOf(id);
+        boolean rsl = i != -1;
+        if (rsl) {
             System.arraycopy(items, i + 1, items, i, size - i - 1);
             items[size - 1] = null;
             size--;
-            rsl = true;
         }
-        return  rsl;
+        return rsl;
     }
 }
