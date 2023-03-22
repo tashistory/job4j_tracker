@@ -17,6 +17,7 @@ public class StartUITest {
         new StartUI().init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName()).isEqualTo("Item name");
     }
+
     @Test
     public void whenReplaceItem() {
         Tracker tracker = new Tracker();
