@@ -4,7 +4,7 @@ import static java.lang.Character.*;
 
 public class PasswordValidator {
 
-    private static String contain(char[] passwdArray) {
+    private static void contain(char[] passwdArray) {
         int rslDig = 0;
         int rslUp = 0;
         int rslLo = 0;
@@ -22,20 +22,22 @@ public class PasswordValidator {
             if (!isLowerCase(passwdchar) && !isUpperCase(passwdchar) && !isDigit(passwdchar)) {
                 rslSim++;
             }
+            if (rslDig > 0 && rslUp > 0 && rslLo > 0 && rslSim > 0) {
+                break;
+            }
         }
         if (rslDig == 0) {
-            return "Password should contain at least one figure";
+            throw new IllegalArgumentException("Password should contain at least one figure");
         }
         if (rslUp == 0) {
-            return "Password should contain at least one uppercase letter";
+            throw new IllegalArgumentException("Password should contain at least one uppercase letter");
         }
         if (rslLo == 0) {
-            return "Password should contain at least one lowercase letter";
+            throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
         if (rslSim == 0) {
-            return "Password should contain at least one special symbol";
+            throw new IllegalArgumentException("Password should contain at least one special symbol");
         }
-        return null;
     }
 
     public static String validate(String password) {
@@ -51,11 +53,7 @@ public class PasswordValidator {
                 throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
             }
         }
-        char[] passwdArray = password.toCharArray();
-        String rsl = contain(passwdArray);
-        if (rsl != null) {
-            throw new IllegalArgumentException(rsl);
-        }
+        contain(password.toCharArray());
         return password;
     }
 }
