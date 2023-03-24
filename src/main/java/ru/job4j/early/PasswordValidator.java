@@ -3,40 +3,39 @@ package ru.job4j.early;
 import static java.lang.Character.*;
 
 public class PasswordValidator {
-    private static boolean containOneFigure(char[] passwdArray) {
+
+    private static String contain(char[] passwdArray) {
+        int rslDig = 0;
+        int rslUp = 0;
+        int rslLo = 0;
+        int rslSim = 0;
         for (char passwdchar : passwdArray) {
             if (isDigit(passwdchar)) {
-                return true;
+                rslDig++;
             }
-        }
-        return false;
-    }
-
-    private static boolean containUpperCase(char[] passwdArray) {
-        for (char passwdchar : passwdArray) {
             if (isUpperCase(passwdchar)) {
-                return true;
+                rslUp++;
             }
-        }
-        return false;
-    }
-
-    private static boolean containLowCase(char[] passwdArray) {
-        for (char passwdchar : passwdArray) {
             if (isLowerCase(passwdchar)) {
-                return true;
+                rslLo++;
             }
-        }
-        return false;
-    }
-
-    private static boolean containSpecialSymbol(char[] passwdArray) {
-        for (char passwdchar : passwdArray) {
             if (!isLowerCase(passwdchar) && !isUpperCase(passwdchar) && !isDigit(passwdchar)) {
-                return true;
+                rslSim++;
             }
         }
-        return false;
+        if (rslDig == 0) {
+            return "Password should contain at least one figure";
+        }
+        if (rslUp == 0) {
+            return "Password should contain at least one uppercase letter";
+        }
+        if (rslLo == 0) {
+            return "Password should contain at least one lowercase letter";
+        }
+        if (rslSim == 0) {
+            return "Password should contain at least one special symbol";
+        }
+        return null;
     }
 
     public static String validate(String password) {
@@ -53,17 +52,9 @@ public class PasswordValidator {
             }
         }
         char[] passwdArray = password.toCharArray();
-        if (!containOneFigure(passwdArray)) {
-            throw new IllegalArgumentException("Password should contain at least one figure");
-        }
-        if (!containUpperCase(passwdArray)) {
-            throw new IllegalArgumentException("Password should contain at least one uppercase letter");
-        }
-        if (!containLowCase(passwdArray)) {
-            throw new IllegalArgumentException("Password should contain at least one lowercase letter");
-        }
-        if (!containSpecialSymbol(passwdArray)) {
-            throw new IllegalArgumentException("Password should contain at least one special symbol");
+        String rsl = contain(passwdArray);
+        if (rsl != null) {
+            throw new IllegalArgumentException(rsl);
         }
         return password;
     }
