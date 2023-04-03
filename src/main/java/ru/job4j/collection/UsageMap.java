@@ -11,7 +11,7 @@ public class UsageMap {
 
         for (String key : map.keySet()) {
             String value = map.get(key);
-            System.out.println(String.format("%-20s %-20s", key , value));
+            System.out.println(String.format("%-20s %-20s", key, value));
         }
     }
 }
