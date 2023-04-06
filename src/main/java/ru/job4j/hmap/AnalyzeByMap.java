@@ -32,12 +32,7 @@ public class AnalyzeByMap {
         int sum = 0;
         for (Pupil p : pupils) {
             for (Subject s : p.subjects()) {
-                if (temp.get(s.name()) == null) {
-                    sum = 0;
-                } else {
-                    sum = temp.get(s.name());
-                }
-                temp.put(s.name(), sum + s.score());
+                temp.put(s.name(), temp.getOrDefault(s.name(), 0) + s.score());
             }
         }
         List<Label> rslt = new ArrayList<>();
