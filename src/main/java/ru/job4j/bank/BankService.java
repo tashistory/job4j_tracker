@@ -52,17 +52,12 @@ public class BankService {
                                  String destPassport, String destRequisite, double amount) {
         Account src = findByRequisite(srcPassport, srcRequisite);
         Account dest = findByRequisite(destPassport, destRequisite);
-        if (src == null || dest == null) {
+        if (src == null || dest == null || src.getBalance() < amount) {
             return false;
         }
-        if (src.getBalance() >= amount) {
-            double amountDest = dest.getBalance();
-            double amountSrc = src.getBalance();
-            src.setBalance(amountSrc - amount);
-            dest.setBalance(amountDest + amount);
-            return true;
-        }
-        return false;
+        src.setBalance(src.getBalance() - amount);
+        dest.setBalance(dest.getBalance() + amount);
+        return true;
     }
 
     public List<Account> getAccounts(User user) {
