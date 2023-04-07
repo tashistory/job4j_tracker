@@ -12,9 +12,9 @@ public class StringCompare implements Comparator<String> {
         for (int i = 0; i < lenght; i++) {
             rsl = Character.compare(left.charAt(i), right.charAt(i));
             if (rsl != 0) {
-                break;
+                return rsl;
             }
         }
-        return rsl == 0 ? Integer.compare(left.length(), right.length()) : rsl;
+        return Integer.compare(left.length(), right.length());
     }
 }
