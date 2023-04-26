@@ -19,7 +19,7 @@ public class SchoolTest {
                 new Student(90, "Surname9")
         );
         School school = new School();
-        Predicate<Student> predicate = Student -> Student.getScore() >= 70 && Student.getScore() <= 90;
+        Predicate<Student> predicate = Student -> Student.getScore() >= 70 && Student.getScore() <= 100;
         List<Student> result = school.collect(students, predicate);
         List<Student> expected = new ArrayList<>();
         expected.add(new Student(70, "Surname7"));
