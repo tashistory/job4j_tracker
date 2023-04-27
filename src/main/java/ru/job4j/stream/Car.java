@@ -58,7 +58,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Builder{"
+        return "Car{"
                 + "brand='"
                 + brand + '\''
                 + ", model='"
