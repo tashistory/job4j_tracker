@@ -16,7 +16,7 @@ public class College {
       return students.keySet()
                 .stream()
                 .filter(s -> s.account().equals(account))
-                .findFirst() ;
+                .findFirst();
     }
 
     public Optional<Subject> findBySubjectName(String account, String name) {
