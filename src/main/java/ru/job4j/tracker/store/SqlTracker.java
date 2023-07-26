@@ -83,9 +83,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement ps = cn.prepareStatement("select * from items")) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                rslt.add(new Item(rs.getInt(1)
-                        , rs.getString(2)
-                        , rs.getTimestamp(3).toLocalDateTime()));
+                rslt.add(new Item(rs.getInt(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime()));
             }
         }
         return rslt;
