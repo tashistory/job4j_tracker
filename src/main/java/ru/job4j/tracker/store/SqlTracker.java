@@ -76,13 +76,12 @@ public class SqlTracker implements Store {
         return rslt;
     }
 
-
     @Override
     public List<Item> findAll() throws SQLException {
         List<Item> rslt = new LinkedList<>();
         try (PreparedStatement ps = cn.prepareStatement("select * from items")) {
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 rslt.add(new Item(rs.getInt(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime()));
             }
         }
@@ -95,7 +94,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement ps = cn.prepareStatement("select * from items where name like ?")) {
             ps.setString(1, key);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 rslt.add(new Item(rs.getInt(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime()));
             }
         }
