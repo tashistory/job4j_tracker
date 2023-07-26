@@ -98,9 +98,9 @@ public class SqlTracker implements Store {
             ps.setString(1, key);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                rslt.add(new Item(rs.getInt(1),
-                        rs.getString(2),
-                        rs.getTimestamp(3).toLocalDateTime()));
+                rslt.add(new Item(rs.getInt(1)
+                        ,rs.getString(2)
+                        ,rs.getTimestamp(3).toLocalDateTime()));
             }
         }
         return rslt;
