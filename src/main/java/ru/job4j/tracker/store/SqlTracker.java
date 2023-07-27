@@ -1,6 +1,7 @@
 package ru.job4j.tracker.store;
 
 
+import java.io.FileInputStream;
 import java.sql.*;
 
 import ru.job4j.tracker.Item;
@@ -22,8 +23,7 @@ public class SqlTracker implements Store {
     }
 
     private void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader()
-                .getResourceAsStream("app.properties")) {
+        try (InputStream in = new FileInputStream("db/liquibase.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
