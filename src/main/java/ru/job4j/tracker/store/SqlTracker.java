@@ -47,7 +47,7 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) throws SQLException {
 
-        try (PreparedStatement ps = cn.prepareStatement("INSERT INTO items (name, created) VALUES (?, ?", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = cn.prepareStatement("INSERT INTO items (name, created) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, item.getName());
             ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             ps.execute();
@@ -68,7 +68,8 @@ public class SqlTracker implements Store {
         try (PreparedStatement ps = cn.prepareStatement("UPDATE items SET name = ?, created = ? WHERE id = ?")) {
             ps.setString(1, item.getName());
             ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
-            rslt = ps.execute();
+            ps.setInt(3, id);
+            rslt = ps.executeUpdate() != 0;
         }
         return rslt;
     }
@@ -78,7 +79,7 @@ public class SqlTracker implements Store {
         boolean rslt;
         try (PreparedStatement ps = cn.prepareStatement("DELETE FROM items WHERE id = ?")) {
             ps.setInt(1, id);
-            rslt = ps.execute();
+            rslt = ps.executeUpdate() != 0;
         }
         return rslt;
     }
@@ -114,10 +115,11 @@ public class SqlTracker implements Store {
         try (PreparedStatement ps = cn.prepareStatement("select * from items where id = ?")) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            rs.next();
-            rslt.setId(rs.getInt(1));
-            rslt.setName(rs.getString(2));
-            rslt.setCreated(rs.getTimestamp(3).toLocalDateTime());
+            if (rs.next()) {
+                rslt.setId(rs.getInt(1));
+                rslt.setName(rs.getString(2));
+                rslt.setCreated(rs.getTimestamp(3).toLocalDateTime());
+            }
         }
         return rslt;
     }

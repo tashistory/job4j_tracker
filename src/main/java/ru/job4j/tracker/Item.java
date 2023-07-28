@@ -19,16 +19,16 @@ public class Item {
     public Item(int id, String name) {
         this.name = name;
         this.id = id;
-        this.created = LocalDateTime.now();
+        this.created = LocalDateTime.now().withNano(0);
     }
 
     public Item(String name) {
         this.name = name;
-        this.created = LocalDateTime.now();
+        this.created = LocalDateTime.now().withNano(0);
     }
 
     public Item() {
-        this.created = LocalDateTime.now();
+        this.created = LocalDateTime.now().withNano(0);
     }
 
     @Override

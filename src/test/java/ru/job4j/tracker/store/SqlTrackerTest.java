@@ -59,4 +59,33 @@ public class SqlTrackerTest {
         assertThat(tracker.findById(item.getId())).isEqualTo(item);
     }
 
+    @Test
+    public void whenReplaceItem() throws SQLException {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("item");
+        Item itemR = new Item("itemR");
+        tracker.add(item);
+        tracker.replace(item.getId(), itemR);
+        assertThat(tracker.findById(item.getId()).getName()).isEqualTo(itemR.getName());
+    }
+
+    @Test
+    public void whenDaleteItem() throws SQLException {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("item");
+        Item newItem = new Item();
+        tracker.add(item);
+        tracker.delete(item.getId());
+        assertThat(tracker.findById(item.getId()).getName()).isNull();
+    }
+
+    @Test
+    public void whenFindByNameThen2() throws SQLException {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item1 = new Item("item");
+        Item item2 = new Item("item");
+        tracker.add(item1);
+        tracker.add(item2);
+        assertThat(tracker.findByName("item").size()).isEqualTo(2);
+    }
 }
