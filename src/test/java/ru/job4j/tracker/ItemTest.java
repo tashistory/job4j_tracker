@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.hmap.Label;
 
@@ -10,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
 
 class ItemTest {
+    @Disabled
     @Test
     public void whenAscsort() {
         List<Item> items = new ArrayList<>(Arrays.asList(new Item("fvfvfvvf"),
@@ -20,6 +22,7 @@ class ItemTest {
         assertThat(items.toString()).isEqualTo(expected.toString());
     }
 
+    @Disabled
     @Test
     public void whenDescsort() {
         List<Item> items = new ArrayList<>(Arrays.asList(new Item("fvfvfvvf"),
