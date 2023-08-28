@@ -3,7 +3,6 @@ package ru.job4j.tracker;
 import ru.job4j.tracker.store.SqlTracker;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 public class StartUI {
@@ -48,7 +47,7 @@ public class StartUI {
        Input input = new ValidateInput(
                output, new ConsoleInput()
        );
-       try (Store tracker = new SqlTracker()) {
+       try (Store tracker = new MemTracker()) {
            List<UserAction> actions = List.of(
                    new CreateAction(output),
                    new EditAction(output),
@@ -56,7 +55,10 @@ public class StartUI {
                    new ShowAction(output),
                    new FindActionById(output),
                    new FindActionByName(output),
-                   new ExitAction()
+                   new ExitAction(),
+                   new CreateManyItems(output),
+                   new DeleteAllItems(output)
+
            );
            new StartUI(output).init(input, tracker, actions);
        } catch (Exception e) {
